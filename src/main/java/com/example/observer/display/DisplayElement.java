@@ -1,0 +1,10 @@
+package com.example.observer.display;
+
+/**
+ * @author wll
+ * @data 2020/05/30
+ */
+public interface DisplayElement {
+
+    void display();
+}
