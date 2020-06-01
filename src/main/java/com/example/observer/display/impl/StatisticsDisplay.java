@@ -1,8 +1,10 @@
 package com.example.observer.display.impl;
 
 import com.example.observer.display.DisplayElement;
-import com.example.observer.observer.Observer;
-import com.example.observer.subject.Subject;
+import com.example.observer.observable.impl.WeatherData;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * @author wll
@@ -20,11 +22,11 @@ public class StatisticsDisplay implements Observer, DisplayElement {
      */
     private float humidity;
 
-    private Subject weatherData;
+    private Observable observable;
 
-    public StatisticsDisplay(Subject weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+    public StatisticsDisplay(Observable o) {
+        this.observable = o;
+        o.addObserver(this);
     }
 
     @Override
@@ -33,9 +35,12 @@ public class StatisticsDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(float temp, float humidity, float perssure) {
-        this.temperature = temp;
-        this.humidity = humidity;
-        display();
+    public void update(Observable obs, Object arg) {
+        if (obs instanceof WeatherData) {
+            WeatherData weatherData = (WeatherData) obs;
+            this.temperature = weatherData.getTemperature();
+            this.humidity = weatherData.getHumidity();
+            display();
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.example.observer.display.impl;
 
 import com.example.observer.display.DisplayElement;
-import com.example.observer.observer.Observer;
-import com.example.observer.subject.Subject;
+import com.example.observer.observable.impl.WeatherData;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * 现状
@@ -23,22 +25,25 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
     private float humidity;
 
 
-    private Subject weatherData;
+    private Observable observable;
 
     @Override
     public void display() {
         System.out.println("Current conditions: " + temperature + "F degrees and " + humidity + "% humidity");
     }
 
-    public CurrentConditionsDisplay(Subject weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+    public CurrentConditionsDisplay(Observable o) {
+        this.observable = o;
+        observable.addObserver(this);
     }
 
     @Override
-    public void update(float temp, float humidity, float perssure) {
-        this.temperature = temp;
-        this.humidity = humidity;
-        display();
+    public void update(Observable obs, Object arg) {
+        if (obs instanceof WeatherData) {
+            WeatherData weatherData = (WeatherData) obs;
+            this.temperature = weatherData.getTemperature();
+            this.humidity = weatherData.getTemperature();
+            display();
+        }
     }
 }

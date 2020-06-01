@@ -6,6 +6,13 @@ package com.example.observer.observer;
  */
 public interface Observer {
 
-    public void update(float temp, float humidity, float perssure);
+    /**
+     * 旁观者更新
+     *
+     * @param temp
+     * @param humidity
+     * @param perssure
+     */
+    void update(float temp, float humidity, float perssure);
 
 }

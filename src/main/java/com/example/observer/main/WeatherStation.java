@@ -2,7 +2,7 @@ package com.example.observer.main;
 
 import com.example.observer.display.impl.CurrentConditionsDisplay;
 import com.example.observer.display.impl.StatisticsDisplay;
-import com.example.observer.subject.impl.WeatherData;
+import com.example.observer.observable.impl.WeatherData;
 
 /**
  * @author wll

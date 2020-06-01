@@ -6,5 +6,8 @@ package com.example.observer.display;
  */
 public interface DisplayElement {
 
+    /**
+     * 展示板
+     */
     void display();
 }

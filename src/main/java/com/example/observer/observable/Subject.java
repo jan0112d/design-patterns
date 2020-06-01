@@ -1,4 +1,4 @@
-package com.example.observer.subject;
+package com.example.observer.observable;
 
 
 import com.example.observer.observer.Observer;
